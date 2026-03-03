@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jitender Singh Shekhawat — Chief Engineer, 6G Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #060810;
+      --bg2: #0c0f1a;
+      --surface: #111526;
+      --border: rgba(99,119,255,0.15);
+      --accent: #4f6ef7;
+      --accent2: #00d4ff;
+      --accent3: #7c3aed;
+      --gold: #f59e0b;
+      --text: #e8eaf6;
+      --muted: #6b7280;
+      --light: #a5b4fc;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cabinet Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5%;background:rgba(6,8,16,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+    .nav-logo{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.1rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;text-transform:uppercase;transition:color .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent2);transform:scaleX(0);transition:transform .2s;transform-origin:left}
+    .nav-links a:hover{color:var(--accent2)}
+    .nav-links a:hover::after{transform:scaleX(1)}
+    .nav-cta{padding:.5rem 1.2rem;border:1px solid var(--accent);color:var(--accent);border-radius:4px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.04em;transition:all .2s;text-transform:uppercase}
+    .nav-cta:hover{background:var(--accent);color:#fff}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+    /* HERO */
+    #home{min-height:100vh;display:flex;align-items:center;padding:8rem 5% 5rem;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center;width:100%;max-width:1200px;margin:0 auto}
+    .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:blobFloat 8s ease-in-out infinite;pointer-events:none}
+    .blob1{width:500px;height:500px;background:var(--accent);top:-100px;left:-150px;animation-delay:0s}
+    .blob2{width:400px;height:400px;background:var(--accent3);bottom:-100px;right:10%;animation-delay:3s}
+    .blob3{width:300px;height:300px;background:var(--accent2);top:40%;right:30%;animation-delay:1.5s}
+    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-30px) scale(1.05)}}
+    .hero-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem;border:1px solid var(--border);border-radius:50px;background:rgba(79,110,247,.08);font-size:.8rem;font-weight:600;color:var(--light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
+    .hero-tag .dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    .hero-name{font-family:'Clash Display',sans-serif;font-size:clamp(2.8rem,5vw,4rem);font-weight:700;line-height:1.05;letter-spacing:-.04em;margin-bottom:.5rem}
+    .hero-name span{background:linear-gradient(135deg,#fff 0%,var(--light) 50%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-role{font-size:1.1rem;font-weight:700;color:var(--accent2);margin-bottom:1.2rem;letter-spacing:.01em}
+    .hero-desc{color:var(--muted);font-size:.97rem;line-height:1.78;max-width:560px;margin-bottom:2rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;background:linear-gradient(135deg,var(--accent),var(--accent3));color:#fff;border-radius:6px;text-decoration:none;font-weight:700;font-size:.9rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(79,110,247,.35)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,110,247,.5)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;border:1px solid var(--border);color:var(--text);border-radius:6px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .2s;background:rgba(255,255,255,.03)}
+    .btn-secondary:hover{border-color:var(--accent2);color:var(--accent2)}
+    .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--border)}
+    .stat-item{text-align:center}
+    .stat-num{font-family:'Clash Display',sans-serif;font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-label{font-size:.75rem;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:.1rem}
+    .hero-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+    .hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(79,110,247,.05),transparent);pointer-events:none}
+    .hero-avatar{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;color:#fff;margin-bottom:1.2rem;box-shadow:0 8px 32px rgba(79,110,247,.4)}
+    .hero-card h3{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.2rem}
+    .hero-card>p{color:var(--muted);font-size:.83rem;margin-bottom:1.2rem}
+    .info-row{display:flex;align-items:center;gap:.65rem;font-size:.83rem;margin-bottom:.6rem}
+    .info-row i{color:var(--accent2);width:14px;font-size:.8rem}
+    .info-row span{color:var(--muted)}
+    .tech-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+    .chip{padding:.25rem .7rem;border-radius:50px;font-size:.7rem;font-weight:600;letter-spacing:.04em;background:rgba(79,110,247,.1);color:var(--light);border:1px solid rgba(79,110,247,.2)}
+    .available-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:50px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e;font-size:.8rem;font-weight:600;margin-top:1rem}
+    .available-badge .live{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
+
+    /* SECTION COMMONS */
+    section{padding:6rem 5%}
+    .section-header{text-align:center;margin-bottom:4rem}
+    .section-tag{display:inline-block;padding:.3rem .9rem;background:rgba(79,110,247,.1);color:var(--light);border:1px solid rgba(79,110,247,.2);border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+    .section-title{font-family:'Clash Display',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.8rem}
+    .section-title span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .section-sub{color:var(--muted);font-size:1rem;max-width:560px;margin:0 auto;line-height:1.7}
+    .max-w{max-width:1200px;margin:0 auto}
+
+    /* ABOUT */
+    #about{background:var(--bg2)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1200px;margin:0 auto}
+    .about-text p{color:var(--muted);line-height:1.8;font-size:.97rem;margin-bottom:1.2rem}
+    .about-highlights{display:flex;flex-direction:column;gap:.9rem;margin-top:1.5rem}
+    .highlight-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.02);transition:border-color .2s,background .2s}
+    .highlight-item:hover{border-color:var(--accent);background:rgba(79,110,247,.05)}
+    .hi-icon{width:38px;height:38px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff}
+    .hi-text h4{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+    .hi-text p{color:var(--muted);font-size:.82rem;line-height:1.5;margin:0}
+    .about-right{display:flex;flex-direction:column;gap:1.5rem}
+    .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center;transition:transform .2s,border-color .2s}
+    .stat-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+    .stat-card .num{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-card .lbl{font-size:.75rem;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:.2rem}
+    .edu-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+    .edu-card h3{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--light)}
+    .edu-item{display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+    .edu-item:last-child{border-bottom:none;padding-bottom:0}
+    .edu-icon{width:36px;height:36px;border-radius:8px;flex-shrink:0;background:rgba(79,110,247,.15);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--accent)}
+    .edu-info h4{font-size:.88rem;font-weight:700;margin-bottom:.15rem}
+    .edu-info p{color:var(--muted);font-size:.78rem}
+    .edu-info span{font-size:.73rem;color:var(--accent2);font-weight:600}
+
+    /* EXPERIENCE */
+    #experience{background:var(--bg)}
+    .timeline{max-width:900px;margin:0 auto;position:relative}
+    .timeline::before{content:'';position:absolute;left:27px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),var(--accent2),transparent)}
+    .tl-item{display:flex;gap:2rem;margin-bottom:2.5rem}
+    .tl-dot{width:56px;height:56px;border-radius:50%;flex-shrink:0;background:var(--surface);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--accent);z-index:1;transition:all .2s}
+    .tl-item:hover .tl-dot{background:var(--accent);color:#fff}
+    .tl-body{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color .2s}
+    .tl-item:hover .tl-body{border-color:var(--accent)}
+    .tl-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.3rem}
+    .tl-role{font-family:'Clash Display',sans-serif;font-size:1.05rem;font-weight:700}
+    .tl-badge{padding:.2rem .7rem;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.05em;background:rgba(79,110,247,.15);color:var(--light);border:1px solid rgba(79,110,247,.25)}
+    .tl-company{color:var(--accent2);font-weight:700;font-size:.9rem;margin-bottom:.3rem}
+    .tl-period{color:var(--muted);font-size:.8rem;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
+    .tl-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .tl-list li{color:var(--muted);font-size:.86rem;line-height:1.6;padding-left:1.2rem;position:relative}
+    .tl-list li::before{content:'▸';position:absolute;left:0;color:var(--accent2);font-size:.7rem;top:.15rem}
+    .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+    .tl-tag{padding:.2rem .6rem;border-radius:4px;font-size:.72rem;font-weight:600;background:rgba(0,212,255,.07);color:var(--accent2);border:1px solid rgba(0,212,255,.15)}
+
+    /* RESEARCH */
+    #research{background:var(--bg2)}
+    .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1200px;margin:0 auto}
+    .research-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem;transition:transform .2s,border-color .2s;position:relative;overflow:hidden}
+    .research-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .research-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+    .rc-type{display:inline-flex;align-items:center;gap:.4rem;font-size:.73rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:.8rem}
+    .rc-title{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.6rem;line-height:1.4}
+    .rc-meta{color:var(--muted);font-size:.83rem;margin-bottom:.8rem;line-height:1.6}
+    .rc-id{font-size:.75rem;font-weight:600;color:var(--gold);background:rgba(245,158,11,.1);padding:.2rem .6rem;border-radius:4px;border:1px solid rgba(245,158,11,.2);display:inline-block}
+    .rc-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);font-size:.82rem;font-weight:600;text-decoration:none;margin-top:.8rem;transition:color .2s}
+    .rc-link:hover{color:var(--accent2)}
+
+    /* SKILLS */
+    #skills{background:var(--bg)}
+    .skills-wrapper{max-width:1200px;margin:0 auto}
+    .skill-category{margin-bottom:3rem}
+    .skill-cat-title{font-family:'Clash Display',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:1.4rem;color:var(--light);display:flex;align-items:center;gap:.7rem}
+    .skill-cat-title i{color:var(--accent2);font-size:.9rem}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+    .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem .9rem;text-align:center;transition:all .2s;cursor:default}
+    .skill-card:hover{transform:translateY(-4px);border-color:var(--accent);background:rgba(79,110,247,.08)}
+    .skill-card i{font-size:1.5rem;margin-bottom:.5rem;display:block}
+    .skill-card span{font-size:.8rem;font-weight:600;color:var(--text)}
+    .skill-bar{height:3px;border-radius:2px;background:var(--border);margin-top:.6rem;overflow:hidden}
+    .skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+    /* CERTS */
+    #certifications{background:var(--bg2)}
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto}
+    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all .2s}
+    .cert-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+    .cert-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--gold),#f97316);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff}
+    .cert-info h4{font-size:.88rem;font-weight:700;margin-bottom:.2rem;line-height:1.4}
+    .cert-info p{color:var(--muted);font-size:.78rem;margin-bottom:.2rem}
+    .cert-info a{font-size:.78rem;color:var(--accent2);text-decoration:none;font-weight:600}
+    .cert-info a:hover{text-decoration:underline}
+
+    /* RECOMMENDATIONS */
+    #recommendations{background:var(--bg)}
+    .rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+    .rec-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;transition:border-color .2s}
+    .rec-card:hover{border-color:var(--accent)}
+    .rec-quote{font-size:3rem;line-height:1;color:var(--accent);font-family:'Clash Display',sans-serif;position:absolute;top:1rem;right:1.5rem;opacity:.25}
+    .rec-text{color:var(--muted);font-size:.88rem;line-height:1.78;font-style:italic;margin-bottom:1.5rem}
+    .rec-author{display:flex;align-items:center;gap:.8rem}
+    .rec-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent3));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0}
+    .rec-name{font-weight:700;font-size:.9rem;margin-bottom:.1rem}
+    .rec-role{color:var(--muted);font-size:.75rem}
+
+    /* CONTACT */
+    #contact{background:var(--bg2)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;max-width:1100px;margin:0 auto;align-items:start}
+    .contact-info h3{font-family:'Clash Display',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:.8rem}
+    .contact-info>p{color:var(--muted);line-height:1.75;margin-bottom:2rem;font-size:.95rem}
+    .contact-items{display:flex;flex-direction:column;gap:1rem}
+    .contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:border-color .2s}
+    .contact-item:hover{border-color:var(--accent)}
+    .ci-icon{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;flex-shrink:0}
+    .ci-label{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.1rem}
+    .ci-value{font-size:.88rem;font-weight:600}
+    .ci-value a{color:var(--text);text-decoration:none}
+    .ci-value a:hover{color:var(--accent2)}
+    .social-links{display:flex;gap:.8rem;margin-top:1.5rem}
+    .social-btn{width:42px;height:42px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.9rem;transition:all .2s}
+    .social-btn:hover{border-color:var(--accent2);color:var(--accent2);background:rgba(0,212,255,.07)}
+    .contact-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem}
+    .contact-form h3{font-family:'Clash Display',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    .form-group{margin-bottom:1rem}
+    .form-group label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.45rem}
+    .form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;color:var(--text);font-family:'Cabinet Grotesk',sans-serif;font-size:.9rem;transition:border-color .2s;outline:none}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,110,247,.1)}
+    .form-group textarea{resize:vertical;min-height:110px}
+    .btn-submit{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--accent),var(--accent3));color:#fff;border:none;border-radius:8px;font-family:'Cabinet Grotesk',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,110,247,.4)}
+
+    /* FOOTER */
+    footer{background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-family:'Clash Display',sans-serif;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+    /* ANIMATIONS */
+    .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    /* MOBILE MENU */
+    .mobile-menu{position:fixed;inset:0;z-index:800;background:rgba(6,8,16,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+    .mobile-menu.open{opacity:1;pointer-events:all}
+    .mobile-menu a{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s}
+    .mobile-menu a:hover{color:var(--accent2)}
+    .close-menu{position:absolute;top:1.5rem;right:5%;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-card{display:none}
+      .about-grid,.research-grid,.rec-grid,.contact-grid{grid-template-columns:1fr}
+      .nav-links,.nav-cta{display:none}
+      .hamburger{display:flex}
+      nav{padding:1rem 5%}
+    }
+    @media(max-width:600px){
+      section{padding:4rem 5%}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#research" onclick="closeMobile()">Research</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">JSS</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="hero-grid">
+    <div class="hero-left fade-up">
+      <div class="hero-tag"><span class="dot"></span>Open to Opportunities</div>
+      <h1 class="hero-name"><span>Jitender Singh</span><br/>Shekhawat</h1>
+      <p class="hero-role">⚡ Chief Engineer, 6G Lab · Samsung R&D Bangalore</p>
+      <p class="hero-desc">Research Engineer specializing in <strong>Reinforcement Learning</strong>, <strong>6G/5G wireless systems</strong>, AI/ML model optimization, and high-performance computing. IIT Kanpur alumnus with 8+ years at Samsung R&D building next-generation telecom solutions.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+        <a href="#research" class="btn-secondary"><i class="fas fa-microscope"></i> View Research</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">8+</div><div class="stat-label">Years at Samsung</div></div>
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">US Patents</div></div>
+        <div class="stat-item"><div class="stat-num">IEEE</div><div class="stat-label">Published</div></div>
+        <div class="stat-item"><div class="stat-num">IIT</div><div class="stat-label">Kanpur Alumni</div></div>
+      </div>
+    </div>
+    <div class="hero-card fade-up">
+      <div class="hero-avatar">JS</div>
+      <h3>Jitender Singh Shekhawat</h3>
+      <p>Chief Engineer · Samsung R&D Institute, Bangalore</p>
+      <div class="info-row"><i class="fas fa-map-marker-alt"></i><span>Bengaluru, Karnataka, India</span></div>
+      <div class="info-row"><i class="fas fa-university"></i><span>B.Tech EE — IIT Kanpur (2012–2016)</span></div>
+      <div class="info-row"><i class="fas fa-building"></i><span>Samsung R&D Institute Bangalore</span></div>
+      <div class="info-row"><i class="fas fa-users"></i><span>420+ LinkedIn Connections</span></div>
+      <div class="tech-chips">
+        <span class="chip">6G/5G</span><span class="chip">Reinforcement Learning</span>
+        <span class="chip">C/C++</span><span class="chip">PyTorch</span>
+        <span class="chip">CUDA</span><span class="chip">RTOS</span>
+        <span class="chip">AI/ML</span><span class="chip">LLVM</span>
+      </div>
+      <div class="available-badge"><span class="live"></span> Open to new opportunities</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <div class="section-tag">Who I Am</div>
+    <h2 class="section-title">About <span>Jitender Singh</span></h2>
+    <p class="section-sub">Research Engineer blending deep expertise in wireless systems with cutting-edge AI/ML.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I am a Research Engineer at <strong>Samsung R&D Bangalore</strong>, currently working as Chief Engineer in the 6G Lab, after completing my B.Tech in Electrical Engineering from <strong>IIT Kanpur</strong>.</p>
+      <p>My research interests span <strong>Reinforcement Learning</strong>, <strong>Machine Learning</strong>, Real-Time Operating Systems (RTOS), and fast data-path multicore design of protocols for high-throughput applications in <strong>6G and 5G networks</strong>.</p>
+      <p>I have hands-on expertise in AI/ML model quantization (CNN & Transformers) for PyTorch, TensorFlow and ONNX deployment using QAT/PTQ strategies, work extensively with NVIDIA's PyAerial SDK with CUDA, and apply compiler optimizations like LLVM and LTO for HPC and low-latency systems.</p>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="hi-icon"><i class="fas fa-brain"></i></div>
+          <div class="hi-text"><h4>AI/ML Research</h4><p>Deep Q-Networks (DQN) & REINFORCE Policy Gradient for multi-objective 5G radio resource optimization.</p></div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon"><i class="fas fa-microchip"></i></div>
+          <div class="hi-text"><h4>Compiler & HPC</h4><p>SIMD optimizations, LLVM/LTO for low-latency, high-throughput multicore parallel computing systems.</p></div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon"><i class="fas fa-signal"></i></div>
+          <div class="hi-text"><h4>6G/5G Protocol Stack</h4><p>RLC/PDCP layer development, baremetal programming, and distributed system design for next-gen networks.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right fade-up">
+      <div class="stat-cards">
+        <div class="stat-card"><div class="num">8+</div><div class="lbl">Years at Samsung</div></div>
+        <div class="stat-card"><div class="num">2</div><div class="lbl">US Patents</div></div>
+        <div class="stat-card"><div class="num">IEEE</div><div class="lbl">Published</div></div>
+        <div class="stat-card"><div class="num">IIT</div><div class="lbl">Kanpur</div></div>
+      </div>
+      <div class="edu-card">
+        <h3>🎓 Education</h3>
+        <div class="edu-item">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-info"><h4>Indian Institute of Technology, Kanpur</h4><p>Bachelor of Technology — Electrical Engineering</p><span>2012 – 2016</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon"><i class="fas fa-school"></i></div>
+          <div class="edu-info"><h4>Kendriya Vidyalaya BSF Jodhpur</h4><p>Higher Secondary Education</p><span>2006 – 2010</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-up">
+    <div class="section-tag">Career</div>
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <p class="section-sub">8+ years of continuous growth at Samsung R&D Institute Bangalore.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item fade-up">
+      <div class="tl-dot"><i class="fas fa-crown"></i></div>
+      <div class="tl-body">
+        <div class="tl-header"><div class="tl-role">Chief Engineer</div><span class="tl-badge">Mar 2022 – Present</span></div>
+        <div class="tl-company">Samsung R&D Institute India · Full-time</div>
+        <div class="tl-period"><i class="far fa-clock"></i> 4 yrs 1 mo · Bengaluru (On-site)</div>
+        <ul class="tl-list">
+          <li>6G Lab — Testbed design for high-throughput and low-latency wireless systems</li>
+          <li>AI/ML model (CNN & Transformers) quantization for PyTorch, TensorFlow and ONNX using QAT/PTQ-based strategies</li>
+          <li>NVIDIA PyAerial SDK development with CUDA and Python Stack</li>
+          <li>5G/6G micro-service based RAN stack development and architecture</li>
+          <li>SIMD, Compiler optimizations like LLVM, LTO etc. for HPC and low-latency systems</li>
+          <li>Tech stack: C/C++, Java, Python, Kubernetes, Docker, Baremetal, Distributed System Design</li>
+          <li>Multicore programming and baremetal programming expertise</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tl-tag">C/C++</span><span class="tl-tag">CUDA</span><span class="tl-tag">PyTorch</span>
+          <span class="tl-tag">LLVM</span><span class="tl-tag">6G</span><span class="tl-tag">Docker</span><span class="tl-tag">Kubernetes</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item fade-up">
+      <div class="tl-dot"><i class="fas fa-user-tie"></i></div>
+      <div class="tl-body">
+        <div class="tl-header"><div class="tl-role">Lead Engineer</div><span class="tl-badge">Apr 2020 – Mar 2022</span></div>
+        <div class="tl-company">Samsung R&D Institute, Bangalore · Full-time</div>
+        <div class="tl-period"><i class="far fa-clock"></i> 2 yrs · Bengaluru</div>
+        <ul class="tl-list">
+          <li>Led advanced research in 5G Radio-Resource Allocation using Deep Reinforcement Learning</li>
+          <li>Architected high-performance protocol stack components for Samsung's 5G NR platform</li>
+          <li>Mentored junior engineers and drove technical strategy across projects</li>
+        </ul>
+        <div class="tl-tags"><span class="tl-tag">5G NR</span><span class="tl-tag">Deep RL</span><span class="tl-tag">C++</span><span class="tl-tag">Team Lead</span></div>
+      </div>
+    </div>
+    <div class="tl-item fade-up">
+      <div class="tl-dot"><i class="fas fa-code"></i></div>
+      <div class="tl-body">
+        <div class="tl-header"><div class="tl-role">Senior Software Engineer</div><span class="tl-badge">Apr 2018 – Mar 2020</span></div>
+        <div class="tl-company">Samsung R&D Institute, Bangalore · Full-time</div>
+        <div class="tl-period"><i class="far fa-clock"></i> 2 yrs · Bengaluru</div>
+        <ul class="tl-list">
+          <li>Deep Reinforcement Learning research for Radio-Resource Allocation in 5G Networks</li>
+          <li>Implementation of DQN and REINFORCE Policy Gradient in libtorch C++/PyTorch for multi-objective optimization</li>
+          <li>Development of RLC layer for 5G New Radio (Rel. 15) Network side</li>
+          <li>Design and development of dynamic memory management to support large number of network users</li>
+        </ul>
+        <div class="tl-tags"><span class="tl-tag">DQN</span><span class="tl-tag">PyTorch</span><span class="tl-tag">C++</span><span class="tl-tag">5G NR</span><span class="tl-tag">RLC</span></div>
+      </div>
+    </div>
+    <div class="tl-item fade-up">
+      <div class="tl-dot"><i class="fas fa-laptop-code"></i></div>
+      <div class="tl-body">
+        <div class="tl-header"><div class="tl-role">Software Engineer</div><span class="tl-badge">Jun 2016 – Mar 2018</span></div>
+        <div class="tl-company">Samsung R&D Institute, Bangalore · Full-time</div>
+        <div class="tl-period"><i class="far fa-clock"></i> 1 yr 10 mos · Bengaluru</div>
+        <ul class="tl-list">
+          <li>Design and Development of RLC and PDCP layer for pre-5G Trial CPE device</li>
+          <li>Multicore fast data-path design for the protocol stack; coding/debugging on RTOS</li>
+          <li>Performance testbed for evaluation of high-throughput protocol stack</li>
+          <li>Written Multicore Profiler on RTOS; MultiCore performance analysis for RLC/PDCP tasks to efficiently utilize parallelism</li>
+        </ul>
+        <div class="tl-tags"><span class="tl-tag">RTOS</span><span class="tl-tag">C</span><span class="tl-tag">RLC/PDCP</span><span class="tl-tag">Multicore</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH & PATENTS -->
+<section id="research">
+  <div class="section-header fade-up">
+    <div class="section-tag">R&D Contributions</div>
+    <h2 class="section-title">Research &amp; <span>Patents</span></h2>
+    <p class="section-sub">IEEE-published research and two granted US patents in wireless telecom scheduling.</p>
+  </div>
+  <div class="research-grid">
+    <div class="research-card fade-up">
+      <div class="rc-type"><i class="fas fa-file-alt"></i> IEEE Publication · GLOBECOM 2020</div>
+      <h3 class="rc-title">A Reinforcement Learning Framework for QoS-Driven Radio Resource Scheduler</h3>
+      <p class="rc-meta">Published January 26, 2021. In cellular communication systems, radio resources are allocated to users by the MAC scheduler running at the base station. This paper presents a novel RL framework for QoS-aware scheduling in 5G networks.</p>
+      <a href="#" class="rc-link"><i class="fas fa-external-link-alt"></i> View Publication</a>
+    </div>
+    <div class="research-card fade-up">
+      <div class="rc-type"><i class="fas fa-certificate"></i> US Patent · Granted</div>
+      <h3 class="rc-title">Method and System for Radio Resource Scheduling in Telecommunication Network</h3>
+      <p class="rc-meta">A method for radio-resource scheduling in a telecommunication network providing optimized allocation for multiple quality-of-service classes simultaneously using reinforcement learning.</p>
+      <span class="rc-id">US11523411B2 · Dec 6, 2022</span><br/>
+      <a href="#" class="rc-link"><i class="fas fa-external-link-alt"></i> View Patent</a>
+    </div>
+    <div class="research-card fade-up">
+      <div class="rc-type"><i class="fas fa-certificate"></i> US Patent · Granted</div>
+      <h3 class="rc-title">Method and Base Station for Managing Scheduling Performance of NGBR Bearers</h3>
+      <p class="rc-meta">A method for managing scheduling performance of bearers by a base station in a wireless network, enabling efficient management of non-guaranteed bitrate bearers in 5G New Radio.</p>
+      <span class="rc-id">US11523411B2 · Oct 1, 2022</span><br/>
+      <a href="#" class="rc-link"><i class="fas fa-external-link-alt"></i> View Patent</a>
+    </div>
+    <div class="research-card fade-up">
+      <div class="rc-type"><i class="fas fa-star"></i> Research Interests</div>
+      <h3 class="rc-title">Current Focus Areas</h3>
+      <p class="rc-meta">Actively exploring cutting-edge areas at the intersection of AI/ML and wireless communication systems.</p>
+      <div class="tech-chips">
+        <span class="chip">Reinforcement Learning</span><span class="chip">Machine Learning</span>
+        <span class="chip">6G Systems</span><span class="chip">RTOS</span>
+        <span class="chip">Fast Data-Path</span><span class="chip">Multicore Design</span>
+        <span class="chip">Model Quantization</span><span class="chip">Radio Resource Mgmt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <div class="section-tag">Tech Stack</div>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <p class="section-sub">A comprehensive stack spanning systems programming, AI/ML, and cloud/DevOps.</p>
+  </div>
+  <div class="skills-wrapper">
+    <div class="skill-category fade-up">
+      <h3 class="skill-cat-title"><i class="fas fa-code"></i> Programming Languages</h3>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fas fa-copyright" style="color:#00599c"></i><span>C / C++</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+        <div class="skill-card"><i class="fab fa-python" style="color:#3572A5"></i><span>Python</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="skill-card"><i class="fab fa-java" style="color:#f89820"></i><span>Java</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-terminal" style="color:#00add8"></i><span>Go</span><div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-terminal" style="color:#89e051"></i><span>Shell/Bash</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h3 class="skill-cat-title"><i class="fas fa-brain"></i> AI / ML Frameworks</h3>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fas fa-fire" style="color:#ee4c2c"></i><span>PyTorch</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-sitemap" style="color:#ff6f00"></i><span>TensorFlow</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-cube" style="color:#76b900"></i><span>ONNX/CUDA</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-robot" style="color:#a5b4fc"></i><span>Deep RL</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-compress-arrows-alt" style="color:#f59e0b"></i><span>Quantization</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h3 class="skill-cat-title"><i class="fas fa-microchip"></i> Systems & HPC</h3>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fas fa-cogs" style="color:#6b7280"></i><span>RTOS</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-tachometer-alt" style="color:#00d4ff"></i><span>LLVM/LTO</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-layer-group" style="color:#22c55e"></i><span>Multicore</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-network-wired" style="color:#f59e0b"></i><span>5G/6G NR</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-signal" style="color:#ec4899"></i><span>RLC/PDCP</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-project-diagram" style="color:#a5b4fc"></i><span>SIMD</span><div class="skill-bar"><div class="skill-fill" style="width:84%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h3 class="skill-cat-title"><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fab fa-docker" style="color:#2496ed"></i><span>Docker</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-dharmachakra" style="color:#326ce5"></i><span>Kubernetes</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+        <div class="skill-card"><i class="fab fa-linux" style="color:#fcc624"></i><span>Linux</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-card"><i class="fas fa-code-branch" style="color:#f05032"></i><span>Git</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-up">
+    <div class="section-tag">Learning</div>
+    <h2 class="section-title">Licenses &amp; <span>Certifications</span></h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card fade-up">
+      <div class="cert-icon"><i class="fas fa-project-diagram"></i></div>
+      <div class="cert-info">
+        <h4>Greedy Algorithms, Minimum Spanning Trees & Dynamic Programming</h4>
+        <p>Coursera · Dec 2018</p>
+        <p style="color:var(--muted);font-size:.74rem;margin-bottom:.4rem">Credential ID: WCGKXW657WGY</p>
+        <a href="#">Show Credential ↗</a>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-icon"><i class="fas fa-route"></i></div>
+      <div class="cert-info">
+        <h4>Graph Search, Shortest Paths, and Data Structures</h4>
+        <p>Coursera · Oct 2018</p>
+        <p style="color:var(--muted);font-size:.74rem;margin-bottom:.4rem">Credential ID: VCNYXHXJTFTH</p>
+        <a href="#">Show Credential ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section id="recommendations">
+  <div class="section-header fade-up">
+    <div class="section-tag">Testimonials</div>
+    <h2 class="section-title">What Colleagues <span>Say</span></h2>
+  </div>
+  <div class="rec-grid">
+    <div class="rec-card fade-up">
+      <div class="rec-quote">"</div>
+      <p class="rec-text">Jitender has a strong command of reinforcement learning, having even published a research paper in the field. His depth of understanding extends across multiple programming languages, making him highly versatile in solving complex problems. His proficiency in CUDA programming enabled efficient parallel computing solutions, and his deep knowledge of MAC layer protocols made him an invaluable asset to our projects. His ability to break down complex problems and find optimized solutions is remarkable.</p>
+      <div class="rec-author">
+        <div class="rec-avatar">SK</div>
+        <div><div class="rec-name">Shivaji Kant</div><div class="rec-role">Google Innovator · HPC / AI & ML · Distributed Cloud Platform</div></div>
+      </div>
+    </div>
+    <div class="rec-card fade-up">
+      <div class="rec-quote">"</div>
+      <p class="rec-text">His work in using reinforcement learning for packet distribution has been groundbreaking, showcasing a keen understanding of how to leverage ML to optimize systems and improve performance. Jitender's innovative approach and meticulous attention to detail have led to significant advancements. He is not only an exceptional professional but also a collaborative team player — highly recommended to anyone seeking expertise in telecommunications or reinforcement learning.</p>
+      <div class="rec-author">
+        <div class="rec-avatar">AS</div>
+        <div><div class="rec-name">Ankur Saxena</div><div class="rec-role">Staff Engineer at Qualcomm · Ex Samsung SRIB</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <div class="section-tag">Let's Connect</div>
+    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <p class="section-sub">Open to research collaborations, 6G/AI projects, and new career opportunities.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <h3>Let's Build Something <span style="color:var(--accent2)">Extraordinary</span></h3>
+      <p>Whether you're looking to collaborate on cutting-edge 6G research, AI/ML optimization projects, or explore new opportunities in high-performance systems — I'd love to connect.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="ci-label">Location</div><div class="ci-value">Bengaluru, Karnataka, India</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fab fa-linkedin"></i></div>
+          <div><div class="ci-label">LinkedIn</div><div class="ci-value"><a href="https://linkedin.com/in/jitender-singh-shekhawat" target="_blank">jitender-singh-shekhawat ↗</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-building"></i></div>
+          <div><div class="ci-label">Current Role</div><div class="ci-value">Chief Engineer, 6G Lab — Samsung R&D</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:jitender@example.com">jitender@example.com</a></div></div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/jitender-singh-shekhawat" class="social-btn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+        <a href="mailto:jitender@example.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="available-badge" style="margin-top:1.5rem"><span class="live"></span> Available for Collaborations</div>
+    </div>
+    <div class="contact-form fade-up">
+      <h3>Send a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+      </div>
+      <div class="form-group"><label>Subject</label><input type="text" placeholder="Research collaboration, opportunity..."/></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+      <button class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jitender Singh Shekhawat</div>
+  <p style="color:var(--muted);font-size:.82rem">Chief Engineer, 6G Lab · Samsung R&D Bangalore · IIT Kanpur Alumni</p>
+  <p style="color:var(--muted);font-size:.82rem">© 2025 All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll fade animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), e.target.dataset.delay || 0);
+      }
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.dataset.delay = (i % 3) * 100;
+    observer.observe(el);
+  });
+
+  // Navbar compact on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding = window.scrollY > 60 ? '.8rem 5%' : '1.2rem 5%';
+  });
+
+  // Mobile menu
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+  });
+  document.getElementById('closeMenu').addEventListener('click', closeMobile);
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Form submit feedback
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    this.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+    this.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+    setTimeout(() => {
+      this.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      this.style.background = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
